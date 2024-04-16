@@ -12,6 +12,16 @@ function generate_password($length)
     return $password;
 }
 
+// Verifico se è stata inviata una richiesta POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //Verifico se è stata specificata la lunghezza della password
+    if (isset($_POST['lunghezza_password'])) {
+        //ottengo la lunghezza della password e la genero
+        $lunghezza = intval($_POST['lunghezza_password']);
+        $password_generata = generate_password($lunghezza);
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -35,8 +45,13 @@ function generate_password($length)
             <label for="lunghezza_password"><strong>Lunghezza Password</strong></label>
             <input type="number" class="form-control" id="lunghezza_password" name="lunghezza_password">
             <button type="submit">Genera</button>
-            <h4>stampa password</h4>
+
         </form>
+
+        <!-- stampo la password solo se è stata generata -->
+        <?php if (isset($password_generata)) : ?>
+            <h4>La password generata è: <?php echo $password_generata; ?> </h4>
+        <?php endif; ?>
     </div>
 
 </body>
