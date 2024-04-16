@@ -18,6 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //ottengo la lunghezza della password e la genero
         $lunghezza = intval($_POST['lunghezza_password']);
         $password_generata = generate_password($lunghezza);
+        // $_SESSION['password_generata'] = generate_password($lunghezza);
+        // header("Location: ./partials/show_password.php");
     }
 }
 
