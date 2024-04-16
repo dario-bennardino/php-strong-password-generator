@@ -22,6 +22,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+// Verifica se è stato inviato il modulo con il pulsante Reset
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reset'])) {
+    // Resetta la variabile della password generata
+    $password_generata = '';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP Strong Password Generator</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
@@ -44,7 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="lunghezza_password"><strong>Lunghezza Password</strong></label>
             <input type="number" class="form-control" id="lunghezza_password" name="lunghezza_password">
-            <button type="submit">Genera</button>
+            <button type="submit" class="btn btn-primary">Genera</button>
+            <button type="submit" class="btn btn-secondary" name="reset">Reset</button>
 
         </form>
 
