@@ -1,5 +1,16 @@
 <?php
+function generate_password($length)
+{
+    $caratteri = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}|:"<>?-=[]\;,./';
+    $password = '';
+    $lunghezza_password = strlen($caratteri) - 1;
 
+    for ($i = 0; $i < $length; $i++) {
+        $password .= $caratteri[mt_rand(0, $lunghezza_password)];
+    }
+
+    return $password;
+}
 
 ?>
 
@@ -15,10 +26,19 @@
 </head>
 
 <body>
-    <form action="index.php" method="POST">
-        <input type="text" name="password">
-        <button type="submit">Genera</button>
-    </form>
+
+    <div class="container my-4">
+        <h1>PHP Strong Password Generator</h1>
+
+        <form action="index.php" method="POST" class="mt-4">
+
+            <label for="lunghezza_password"><strong>Lunghezza Password</strong></label>
+            <input type="number" class="form-control" id="lunghezza_password" name="lunghezza_password">
+            <button type="submit">Genera</button>
+            <h4>stampa password</h4>
+        </form>
+    </div>
+
 </body>
 
 </html>
